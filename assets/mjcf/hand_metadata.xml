@@ -1,0 +1,107 @@
+<mujoco>
+    <compiler angle="radian"/>
+    <option collision="all"/>
+    <default>
+        <!-- use same geom params as the Shadow Hand model in IsaacGymEnv for now -->
+        <!-- the density is adjusted so that the total weight of the hand part (not including the base) is the same as the real hand (106g) (therefore the base will have a wrong mass, which shouldn't matter for now) -->
+        <geom rgba="1 1 1 1" type="mesh" density="1" friction="1 0.005 0.001" condim="3" margin="0.0005" contype="1" conaffinity="1"/>
+        <!-- use same joint params as IsaacGymEnv for now -->
+        <!-- TODO: joint damping and position control kp should eventually be set to sysID'ed values -->
+        <joint type="hinge" limited="true" damping="0.05" armature="0.001" margin="0.01" frictionloss="0.001"/>
+        <!-- actuator configuration -->
+        <position ctrllimited="true" forcelimited="true" forcerange="-1 1" kp="2."/>
+        <!-- the tendon which limits the two joints creating the rolling joint should be very limited in its length range -->
+        <tendon limited="true" range="-0.001 0.001"/>
+    </default>
+    <asset>
+        <!-- Index finger meshes -->
+        <mesh name="index_palm" file="../stl/index_l0.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="index_base" file="../stl/index_l0b.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="index_pf" file="../stl/index_l1.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="index_mf" file="../stl/index_l2.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="index_df" file="../stl/index_l3.stl" scale="0.001 0.001 0.001"/>
+
+        <!-- Middle finger meshes -->
+        <mesh name="middle_base" file="../stl/middle_l0.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="middle_pf" file="../stl/middle_l1.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="middle_mf" file="../stl/middle_l2.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="middle_df" file="../stl/middle_l3.stl" scale="0.001 0.001 0.001"/>
+
+        <!-- Ring finger meshes -->
+        <mesh name="ring_base" file="../stl/ring_l0.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="ring_pf" file="../stl/ring_l1.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="ring_mf" file="../stl/ring_l2.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="ring_df" file="../stl/ring_l3.stl" scale="0.001 0.001 0.001"/>
+
+        <!-- Pinky finger meshes -->
+        <mesh name="pinky_base" file="../stl/pinky_l0.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="pinky_pf" file="../stl/pinky_l1.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="pinky_mf" file="../stl/pinky_l2.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="pinky_df" file="../stl/pinky_l3.stl" scale="0.001 0.001 0.001"/>
+    </asset>
+    <sensor>
+        <!-- Index finger sensors -->
+        <jointpos name="index_palm2base" joint="index_palm2base"/>
+        <jointpos name="index_base2pf" joint="index_base2pf"/>
+        <jointpos name="index_pf2mf" joint="index_pf2mf"/>
+        <jointpos name="index_mf2df" joint="index_mf2df"/>
+        
+        <!-- Middle finger sensors -->
+        <jointpos name="middle_base2pf" joint="middle_base2pf"/>
+        <jointpos name="middle_pf2mf" joint="middle_pf2mf"/>
+        <jointpos name="middle_mf2df" joint="middle_mf2df"/>
+        
+        <!-- Ring finger sensors -->
+        <jointpos name="ring_base2pf" joint="ring_base2pf"/>
+        <jointpos name="ring_pf2mf" joint="ring_pf2mf"/>
+        <jointpos name="ring_mf2df" joint="ring_mf2df"/>
+        
+        <!-- Pinky finger sensors -->
+        <jointpos name="pinky_base2pf" joint="pinky_base2pf"/>
+        <jointpos name="pinky_pf2mf" joint="pinky_pf2mf"/>
+        <jointpos name="pinky_mf2df" joint="pinky_mf2df"/>
+    </sensor>
+    <actuator>
+        <!-- Index finger actuators -->
+        <position name="index_palm2base" joint="index_palm2base" ctrlrange="-0.5 0.5"/>
+        <position name="index_base2pf" joint="index_base2pf" ctrlrange="0 1.58"/>
+        <position name="index_pf2mf" joint="index_pf2mf" ctrlrange="0 1.58"/>
+        
+        <!-- Middle finger actuators -->
+        <position name="middle_base2pf" joint="middle_base2pf" ctrlrange="0 1.58"/>
+        <position name="middle_pf2mf" joint="middle_pf2mf" ctrlrange="0 1.58"/>
+        
+        <!-- Ring finger actuators -->
+        <position name="ring_base2pf" joint="ring_base2pf" ctrlrange="0 1.58"/>
+        <position name="ring_pf2mf" joint="ring_pf2mf" ctrlrange="0 1.58"/>
+        
+        <!-- Pinky finger actuators -->
+        <position name="pinky_base2pf" joint="pinky_base2pf" ctrlrange="0 1.58"/>
+        <position name="pinky_pf2mf" joint="pinky_pf2mf" ctrlrange="0 1.58"/>
+    </actuator>
+    <tendon>
+        <!-- Index finger tendons -->
+        <fixed name="index_mf2df">
+            <joint joint="index_pf2mf" coef="1"/>
+            <joint joint="index_mf2df" coef="-1"/>
+        </fixed>
+        
+        <!-- Middle finger tendons -->
+        <fixed name="middle_mf2df">
+            <joint joint="middle_pf2mf" coef="1"/>
+            <joint joint="middle_mf2df" coef="-1"/>
+        </fixed>
+        
+        <!-- Ring finger tendons -->
+        <fixed name="ring_mf2df">
+            <joint joint="ring_pf2mf" coef="1"/>
+            <joint joint="ring_mf2df" coef="-1"/>
+        </fixed>
+        
+        <!-- Pinky finger tendons -->
+        <fixed name="pinky_mf2df">
+            <joint joint="pinky_pf2mf" coef="1"/>
+            <joint joint="pinky_mf2df" coef="-1"/>
+        </fixed>
+    </tendon>
+</mujoco>

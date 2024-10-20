@@ -1,0 +1,18 @@
+<!--Pinky-->
+<mujoco model="pinky_finger">
+    <body name="pinky_base" pos="0 0.06 0" euler="0 0 0">
+        <geom mesh="pinky_base"/>
+        <body name="pinky_pf" pos="0 0 0" euler="0 0 0">
+            <joint name="pinky_base2pf" pos="0.04 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+            <geom mesh="pinky_pf"/>
+            <body name="pinky_mf" pos="0 0 0" euler="0 0 0">
+                <joint name="pinky_pf2mf" pos="0.075 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                <geom mesh="pinky_mf"/>
+                <body name="pinky_df" pos="0 0 0" euler="0 0 0">
+                    <joint name="pinky_mf2df" pos="0.097 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                    <geom mesh="pinky_df"/>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

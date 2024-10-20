@@ -1,0 +1,8 @@
+<mujoco model="right_hand">
+    <body name="root">
+        <include file="fingers/index_finger.xml"/>
+        <include file="fingers/middle_finger.xml"/>
+        <include file="fingers/ring_finger.xml"/>
+        <include file="fingers/pinky_finger.xml"/>
+    </body>
+</mujoco>

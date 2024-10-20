@@ -1,0 +1,22 @@
+<!--Index-->
+<mujoco model="index_finger">
+    <body name="index_palm" pos="0 0 0" euler="0 0 0">
+        <geom mesh="index_palm"/>
+            <body name="index_base" pos="0 0 0" euler="0 0 0">
+                <joint name="index_palm2base" pos="0.01625 0 0" axis="0 0 1" range="-0.5 0.5"/>
+                <geom mesh="index_base"/>
+                    <body name="index_pf" pos="0 0 0" euler="0 0 0">
+                        <joint name="index_base2pf" pos="0.04 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                        <geom mesh="index_pf"/>
+                            <body name="index_mf" pos="0 0 0" euler="0 0 0">
+                                <joint name="index_pf2mf" pos="0.085 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                                <geom mesh="index_mf"/>
+                                    <body name="index_df" pos="0 0 0" euler="0 0 0">
+                                        <joint name="index_mf2df" pos="0.113 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                                        <geom mesh="index_df"/>
+                                    </body>
+                            </body>
+                    </body>
+            </body>
+    </body>
+</mujoco>

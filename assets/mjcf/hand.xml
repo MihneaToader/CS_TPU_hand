@@ -1,0 +1,6 @@
+<mujoco model="hand">
+    <include file="hand_metadata.xml"/>
+    <worldbody>
+        <include file="hand_structure.xml"/>
+    </worldbody>
+</mujoco>
