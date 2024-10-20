@@ -1,6 +1,6 @@
 <!--Middle-->
 <mujoco model="middle_finger">
-    <body name="middle_base" pos="0 0.02 0" euler="0 0 0">
+    <body name="middle_base" pos="0.01431 0.032 -0.025" euler="0 0 0">
         <geom mesh="middle_base"/>
         <body name="middle_pf" pos="0 0 0" euler="0 0 0">
             <joint name="middle_base2pf" pos="0.04 0 0" axis="0 -1 0" range="0 1.57079632679"/>

@@ -1,6 +1,6 @@
 <!--Ring-->
 <mujoco model="ring_finger">
-    <body name="ring_base" pos="0 0.04 0" euler="0 0 0">
+    <body name="ring_base" pos="0.01043 0.055755 -0.02206" euler="0.157095 -0.0005758 -0.0173754">
         <geom mesh="ring_base"/>
         <body name="ring_pf" pos="0 0 0" euler="0 0 0">
             <joint name="ring_base2pf" pos="0.04 0 0" axis="0 -1 0" range="0 1.57079632679"/>

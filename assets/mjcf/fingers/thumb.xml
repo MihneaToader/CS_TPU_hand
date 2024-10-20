@@ -1,0 +1,19 @@
+<!--Thumb-->
+<mujoco model="thumb_finger">
+    <body name="thumb_base" pos="-0.04253 0.002789 -0.019782" euler="-2.5621679 0.7196179 -0.4326462">
+        <joint name="thumb_palm2base" pos="0.01625 0 0" axis="0 0 1" range="-1.57079632679 1.57079632679"/>
+        <geom mesh="thumb_base"/>
+        <body name="thumb_pf" pos="0 0 0" euler="0 0 0">
+            <joint name="thumb_base2pf" pos="0.04 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+            <geom mesh="thumb_pf"/>
+            <body name="thumb_mf" pos="0 0 0" euler="0 0 0">
+                <joint name="thumb_pf2mf" pos="0.085 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                <geom mesh="thumb_mf"/>
+                <body name="thumb_df" pos="0 0 0" euler="0 0 0">
+                    <joint name="thumb_mf2df" pos="0.113 0 0" axis="0 -1 0" range="0 1.57079632679"/>
+                    <geom mesh="thumb_df"/>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

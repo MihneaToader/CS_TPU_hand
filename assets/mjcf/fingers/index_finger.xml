@@ -1,6 +1,6 @@
 <!--Index-->
 <mujoco model="index_finger">
-    <body name="index_palm" pos="0 0 0" euler="0 0 0">
+    <body name="index_palm" pos="0.00747 0.011642 -0.016186" euler="-0.0732158 0.0530328 -0.3632806">
         <geom mesh="index_palm"/>
             <body name="index_base" pos="0 0 0" euler="0 0 0">
                 <joint name="index_palm2base" pos="0.01625 0 0" axis="0 0 1" range="-0.5 0.5"/>

@@ -14,6 +14,13 @@
         <tendon limited="true" range="-0.001 0.001"/>
     </default>
     <asset>
+        <mesh name="palm" file="../stl/palm.stl" scale="0.001 0.001 0.001"/>
+
+        <!-- Index finger meshes -->
+        <mesh name="thumb_base" file="../stl/index_l0b.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="thumb_pf" file="../stl/index_l1.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="thumb_mf" file="../stl/index_l2.stl" scale="0.001 0.001 0.001"/>
+        <mesh name="thumb_df" file="../stl/index_l3.stl" scale="0.001 0.001 0.001"/>
         <!-- Index finger meshes -->
         <mesh name="index_palm" file="../stl/index_l0.stl" scale="0.001 0.001 0.001"/>
         <mesh name="index_base" file="../stl/index_l0b.stl" scale="0.001 0.001 0.001"/>
@@ -40,6 +47,12 @@
         <mesh name="pinky_df" file="../stl/pinky_l3.stl" scale="0.001 0.001 0.001"/>
     </asset>
     <sensor>
+        <!-- Thumb sensors -->
+        <jointpos name="thumb_palm2base" joint="thumb_palm2base"/>
+        <jointpos name="thumb_base2pf" joint="thumb_base2pf"/>
+        <jointpos name="thumb_pf2mf" joint="thumb_pf2mf"/>
+        <jointpos name="thumb_mf2df" joint="thumb_mf2df"/>
+
         <!-- Index finger sensors -->
         <jointpos name="index_palm2base" joint="index_palm2base"/>
         <jointpos name="index_base2pf" joint="index_base2pf"/>
@@ -62,6 +75,10 @@
         <jointpos name="pinky_mf2df" joint="pinky_mf2df"/>
     </sensor>
     <actuator>
+        <!-- Thumb actuators -->
+        <position name="thumb_palm2base" joint="thumb_palm2base" ctrlrange="-1.57079632679 1.57079632679"/>
+        <position name="thumb_base2pf" joint="thumb_base2pf" ctrlrange="0 1.58"/>
+        <position name="thumb_pf2mf" joint="thumb_pf2mf" ctrlrange="0 1.58"/>
         <!-- Index finger actuators -->
         <position name="index_palm2base" joint="index_palm2base" ctrlrange="-0.5 0.5"/>
         <position name="index_base2pf" joint="index_base2pf" ctrlrange="0 1.58"/>
@@ -80,6 +97,11 @@
         <position name="pinky_pf2mf" joint="pinky_pf2mf" ctrlrange="0 1.58"/>
     </actuator>
     <tendon>
+        <!-- Thumb tendons -->
+        <fixed name="thumb_mf2df">
+            <joint joint="thumb_pf2mf" coef="1"/>
+            <joint joint="thumb_mf2df" coef="-1"/>
+        </fixed>
         <!-- Index finger tendons -->
         <fixed name="index_mf2df">
             <joint joint="index_pf2mf" coef="1"/>

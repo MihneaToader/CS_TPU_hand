@@ -1,8 +1,12 @@
 <mujoco model="right_hand">
     <body name="root">
-        <include file="fingers/index_finger.xml"/>
-        <include file="fingers/middle_finger.xml"/>
-        <include file="fingers/ring_finger.xml"/>
-        <include file="fingers/pinky_finger.xml"/>
+        <body name="palm" pos="0 0 0" euler="0 0 0">
+            <geom mesh="palm" euler="3.14159265359 0 0"/>
+                <include file="fingers/thumb.xml"/>
+                <include file="fingers/index_finger.xml"/>
+                <include file="fingers/middle_finger.xml"/>
+                <include file="fingers/ring_finger.xml"/>
+                <include file="fingers/pinky_finger.xml"/>
+        </body>
     </body>
 </mujoco>
